@@ -1,24 +1,14 @@
 package com.fzu.controller;
 
-import com.alibaba.fastjson.JSON;
 import com.fzu.entity.Background;
-import com.fzu.entity.User;
 import com.fzu.result.ServiceResult;
 import com.fzu.service.BackgroundService;
-import com.fzu.service.ClassService;
-import com.fzu.service.UserService;
-import com.fzu.utils.BeanUtil;
 import com.fzu.utils.Page;
 import com.fzu.utils.PictureUtil;
 import com.fzu.vo.BackgroundPageVO;
-import com.fzu.vo.UserAddVO;
-import com.fzu.vo.UserPageVO;
-import com.fzu.vo.UserUpdateVO;
 import io.swagger.annotations.*;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -39,14 +29,14 @@ public class BackgroundController {
     })
     public ServiceResult<Background> addBackground(
             @RequestParam @ApiParam(value = "名称", required = true, type = "query") String name,
-            @ApiParam(value = "上传的照片", required = true) MultipartFile photo){
+            @ApiParam(value = "上传的照片", required = true) MultipartFile photo) {
         if (backgroundService.getByName(name) != null) {
             return ServiceResult.createByErrorMessage("已存在该名称的虚拟背景");
         }
-        Background background=new Background();
+        Background background = new Background();
         background.setName(name);
         try {
-            pictureUtil.sshSftp(photo.getBytes(), "background_"+name + ".jpg");
+            pictureUtil.sshSftp(photo.getBytes(), "background_" + name + ".jpg");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -81,14 +71,14 @@ public class BackgroundController {
     public ServiceResult<Background> updateById(
             @RequestParam @ApiParam(value = "编号", required = true, type = "query") String id,
             @RequestParam @ApiParam(value = "名称", required = true, type = "query") String name,
-            @ApiParam(value = "上传的照片", required = true) MultipartFile photo){
+            @ApiParam(value = "上传的照片", required = true) MultipartFile photo) {
         Background background = backgroundService.getById(id);
         if (background == null) {
             return ServiceResult.createByErrorMessage("虚拟背景不存在");
         }
         background.setName(name);
         try {
-            pictureUtil.sshSftp(photo.getBytes(), "background_"+name + ".jpg");
+            pictureUtil.sshSftp(photo.getBytes(), "background_" + name + ".jpg");
         } catch (Exception e) {
             e.printStackTrace();
         }

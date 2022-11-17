@@ -1,20 +1,18 @@
 package com.fzu.controller;
 
 import com.fzu.entity.Achievement;
-import com.fzu.entity.Alumnus;
 import com.fzu.result.ServiceResult;
 import com.fzu.service.AchievementService;
-import com.fzu.service.AlumnusService;
 import com.fzu.utils.Page;
-import com.fzu.utils.PictureUtil;
-import com.fzu.vo.*;
+import com.fzu.vo.AchievementAddVO;
+import com.fzu.vo.AchievementPageVO;
+import com.fzu.vo.AchievementUpdateVO;
 import io.swagger.annotations.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/achievement")
@@ -36,8 +34,8 @@ public class AchievementController {
         if (achievementService.getByTitle(achievementAddVO.getTitle()) != null) {
             return ServiceResult.createByErrorMessage("已存在该学院风采信息");
         }
-        Achievement achievement=new Achievement();
-        BeanUtils.copyProperties(achievementAddVO,achievement);
+        Achievement achievement = new Achievement();
+        BeanUtils.copyProperties(achievementAddVO, achievement);
         if (!achievementService.save(achievement)) {
             return ServiceResult.createByErrorMessage("创建失败");
         }

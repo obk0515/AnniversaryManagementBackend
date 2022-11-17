@@ -4,15 +4,10 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.fzu.entity.Achievement;
-import com.fzu.entity.Alumnus;
-import com.fzu.entity.Program;
 import com.fzu.mapper.AchievementMapper;
-import com.fzu.mapper.AlumnusMapper;
 import com.fzu.service.AchievementService;
-import com.fzu.service.AlumnusService;
 import com.fzu.utils.Page;
 import com.fzu.vo.AchievementPageVO;
-import com.fzu.vo.AlumnusPageVO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,15 +18,15 @@ import java.util.stream.Collectors;
 public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achievement> implements AchievementService {
     @Override
     public Achievement getByTitle(String title) {
-        return this.getOne(new QueryWrapper<Achievement>().eq("title",title));
+        return this.getOne(new QueryWrapper<Achievement>().eq("title", title));
     }
 
     @Override
     public Page<Achievement> findPage(Page<Achievement> page, AchievementPageVO pageVO) {
-        QueryWrapper<Achievement> wrapper = new QueryWrapper();
+        QueryWrapper<Achievement> wrapper = new QueryWrapper<>();
         wrapper.orderByDesc("time");
         if (StringUtils.isNotBlank(pageVO.getType()) || !Objects.equals(pageVO.getType(), "")) {
-            wrapper.eq("type",pageVO.getType());
+            wrapper.eq("type", pageVO.getType());
         }
         List<Achievement> list = this.list(wrapper);
         //设置总数

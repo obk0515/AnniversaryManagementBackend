@@ -5,7 +5,6 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
 
 @Data
 @ApiModel(value = "AchievementPageVO", description = "AchievementPageVO")

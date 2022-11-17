@@ -8,6 +8,7 @@ import lombok.Data;
 public class Alumnus {
     private String id;
     private String name;
+    private String position;
     private String brief;
     private String photo;
 }

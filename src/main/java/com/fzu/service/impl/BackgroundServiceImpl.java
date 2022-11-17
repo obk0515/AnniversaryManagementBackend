@@ -2,7 +2,6 @@ package com.fzu.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.fzu.entity.Alumnus;
 import com.fzu.entity.Background;
 import com.fzu.mapper.BackgroundMapper;
 import com.fzu.service.BackgroundService;

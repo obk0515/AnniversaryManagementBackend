@@ -1,6 +1,5 @@
 package com.fzu.controller;
 
-import com.alibaba.fastjson.JSON;
 import com.fzu.entity.User;
 import com.fzu.result.ServiceResult;
 import com.fzu.service.ClassService;

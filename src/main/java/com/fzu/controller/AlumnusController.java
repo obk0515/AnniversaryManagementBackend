@@ -29,6 +29,7 @@ public class AlumnusController {
     })
     public ServiceResult<Alumnus> addAlumnus(
             @RequestParam @ApiParam(value = "姓名", required = true, type = "query") String name,
+            @RequestParam @ApiParam(value = "职位", required = true, type = "query") String position,
             @RequestParam @ApiParam(value = "简介", required = true, type = "query") String brief,
             @ApiParam(value = "上传的照片", required = true) MultipartFile photo) {
         if (alumnusService.getByName(name) != null) {
@@ -36,6 +37,7 @@ public class AlumnusController {
         }
         Alumnus alumnus = new Alumnus();
         alumnus.setName(name);
+        alumnus.setPosition(position);
         alumnus.setBrief(brief);
         try {
             pictureUtil.sshSftp(photo.getBytes(), name + ".jpg");
@@ -73,6 +75,7 @@ public class AlumnusController {
     public ServiceResult<Alumnus> updateById(
             @RequestParam @ApiParam(value = "编号", required = true, type = "query") String id,
             @RequestParam @ApiParam(value = "姓名", required = true, type = "query") String name,
+            @RequestParam @ApiParam(value = "职位", required = true, type = "query") String position,
             @RequestParam @ApiParam(value = "简介", required = true, type = "query") String brief,
             @ApiParam(value = "上传的照片", required = true) MultipartFile photo) {
         Alumnus alumnus = alumnusService.getById(id);
@@ -80,6 +83,7 @@ public class AlumnusController {
             return ServiceResult.createByErrorMessage("校友风采不存在");
         }
         alumnus.setName(name);
+        alumnus.setPosition(position);
         alumnus.setBrief(brief);
         try {
             pictureUtil.sshSftp(photo.getBytes(), name + ".jpg");

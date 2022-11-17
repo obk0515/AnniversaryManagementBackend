@@ -14,10 +14,6 @@ class RuangongHoutaiApplicationTests {
 
     @Test
     void contextLoads() {
-        User user=new User();
-        user.setId("8");
-        user.setSex("1");
-        userService.updateById(user);
     }
 
 }
