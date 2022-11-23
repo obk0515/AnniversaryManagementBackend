@@ -27,7 +27,6 @@ public class AchievementUpdateVO {
     @NotBlank(message = "描述不能为空")
     private String description;
 
-    @ApiModelProperty(value = "time", example = "2018-07-01")
-    @NotNull(message = "时间不能为空")
-    private Date time;
+    @ApiModelProperty(value = "rank", example = "一等奖")
+    private String rank;
 }

@@ -40,7 +40,7 @@ public class BackgroundController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        background.setPhoto("http://43.139.44.201/images/background_" + name + ".jpg");
+        background.setPhoto("https://www.prxdong.top/images/background_" + name + ".jpg");
         if (!backgroundService.save(background)) {
             return ServiceResult.createByErrorMessage("创建失败");
         }
@@ -82,7 +82,7 @@ public class BackgroundController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        background.setPhoto("http://43.139.44.201/images/background_" + name + ".jpg");
+        background.setPhoto("https://www.prxdong.top/images/background_" + name + ".jpg");
         if (!backgroundService.updateById(background)) {
             return ServiceResult.createByErrorMessage("修改失败");
         }

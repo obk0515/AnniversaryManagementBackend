@@ -44,7 +44,7 @@ public class AlumnusController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        alumnus.setPhoto("http://43.139.44.201/images/" + name + ".jpg");
+        alumnus.setPhoto("https://www.prxdong.top/images/" + name + ".jpg");
         if (!alumnusService.save(alumnus)) {
             return ServiceResult.createByErrorMessage("创建失败");
         }
@@ -90,7 +90,7 @@ public class AlumnusController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        alumnus.setPhoto("http://43.139.44.201/images/" + name + ".jpg");
+        alumnus.setPhoto("https://www.prxdong.top/images/" + name + ".jpg");
         if (!alumnusService.updateById(alumnus)) {
             return ServiceResult.createByErrorMessage("修改失败");
         }

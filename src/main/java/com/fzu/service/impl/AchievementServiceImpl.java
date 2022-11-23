@@ -24,8 +24,7 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
     @Override
     public Page<Achievement> findPage(Page<Achievement> page, AchievementPageVO pageVO) {
         QueryWrapper<Achievement> wrapper = new QueryWrapper<>();
-        wrapper.orderByDesc("time");
-        if (StringUtils.isNotBlank(pageVO.getType()) || !Objects.equals(pageVO.getType(), "")) {
+        if (StringUtils.isNotBlank(pageVO.getType()) && !Objects.equals(pageVO.getType(), "")) {
             wrapper.eq("type", pageVO.getType());
         }
         List<Achievement> list = this.list(wrapper);
