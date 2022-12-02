@@ -1,8 +1,11 @@
 package com.fzu.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.fzu.entity.Bless;
 import com.fzu.entity.User;
 import com.fzu.result.ServiceResult;
-import com.fzu.service.ClassService;
+import com.fzu.service.BlessService;
+import com.fzu.service.ProgramService;
 import com.fzu.service.UserService;
 import com.fzu.utils.BeanUtil;
 import com.fzu.utils.Page;
@@ -16,6 +19,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 @RequestMapping("/user")
 @Api(value = "UserController", tags = "用户管理模块")
@@ -24,7 +30,10 @@ public class UserController {
     private UserService userService;
 
     @Autowired
-    private ClassService classService;
+    private ProgramService programService;
+
+    @Autowired
+    private BlessService blessService;
 
     @ApiOperation(value = "创建用户")
     @PostMapping("/add")
@@ -110,5 +119,20 @@ public class UserController {
         Page<User> page = new Page<>(pageVO.getPageNo(), pageVO.getPageSize());
         Page<User> returnPage = userService.findPage(page, pageVO);
         return ServiceResult.createBySuccess(returnPage.getList(), Math.toIntExact(returnPage.getCount()));
+    }
+
+    @ApiOperation(value = "查找注册人数、待审核祝福数、活动数")
+    @GetMapping("/selectCount")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "token", value = "访问token", paramType = "header", dataType = "string", required = true)
+    })
+    public ServiceResult<List<Integer>> selectCount() {
+        List<Integer> list = new ArrayList<>();
+        list.add(userService.count());
+        QueryWrapper<Bless> wrapper = new QueryWrapper<>();
+        wrapper.eq("status", "0");
+        list.add(blessService.count(wrapper));
+        list.add(programService.count());
+        return ServiceResult.createBySuccess(list);
     }
 }
