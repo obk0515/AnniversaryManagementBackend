@@ -6,15 +6,15 @@ spring:
   datasource:
     druid:
       driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://43.139.44.201:3306/ruangong?serverTimezone=GMT%2b8&characterEncoding=utf-8
-      username: root
-      password: Ruangong1!
+      url: jdbc:mysql://***:3306/ruangong?serverTimezone=GMT%2b8&characterEncoding=utf-8
+      username: ***
+      password: ***
   devtools:
     livereload:
       enabled: true
   redis:
-    host: 43.139.44.201
-    password: Ruangong1!
+    host: ***
+    password: ***
     port: 6379
     database: 3
   servlet:
@@ -23,13 +23,13 @@ spring:
       max-request-size: 100MB
 
 wechat:
-  AppID: wx99234b032bbfeca6
-  AppSecret: d33f882341c90834e7edf490ff9bb639
+  AppID: ***
+  AppSecret: ***
 
 esc:
-  ip: 43.139.44.201
-  username: root
-  password: ruangong1!
+  ip: ***
+  username: ***
+  password: ***!
   picture:
     port: 80
     path: /home/images
